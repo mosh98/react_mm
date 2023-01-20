@@ -1,4 +1,5 @@
 import {useForm} from "react-hook-form";
+import {loginUser} from "../Profile/api/user/user";
 
 const usernameConfig = {
     required: true,
@@ -11,12 +12,15 @@ const LoginForm = () => {
         handleSubmit,
         formState: {errors},
     } = useForm();
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async ({username}) => {
+        //console.log(data);
         //make a most request to the api: https://bling-bling.herokuapp.com/
+        const [error, user] = await loginUser(username) //data is username ofc
+        console.log('Error:',error)
+        console.log('User:',user)
 
+    };
 
-    }
     const errorMessage = () => {
 
         if (!errors.username) {
