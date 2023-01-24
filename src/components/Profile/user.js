@@ -3,16 +3,16 @@ import {createHeaders} from "./index";
 
 /***
  * TODO:
- *      1.Check if the user exist
- *      2. if not, Save username to the Translation API
+ *      1.Check if the user exist []
+ *      2. if not, Save username to the Translation API [DONE]
  *      3. else, display user
  *      4. Users that are already logged in may automatically redirected to the translation page. (cookies or some shit?)
  *      5.
- *
  *      */
 const apiURL = process.env.REACT_APP_API_URL
 
 const checkForUser = async (username) => {
+
 
     try{
 
@@ -34,10 +34,6 @@ const checkForUser = async (username) => {
 const createUser = async (username) => {
 
     //creating new ID
-/*    const crypto = require('crypto');
-    const id = crypto.randomBytes(2).toString("hex");*/
-    console.log(typeof username)
-    console.log( username.text)
     const translations = []
     try {
         const  response = await fetch(apiURL,{
@@ -74,6 +70,8 @@ export const loginUser = async (username) => {
     if(user.length > 0) {
         return [null, user.pop()] //user.pop() is returning an object
     }
+
+
 
     /*const [createError, newUser] = await createUser(username)
     if(createError !== null){ return [null, newUser] // returning the new user }*/

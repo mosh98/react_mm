@@ -1,5 +1,9 @@
 import {useForm} from "react-hook-form";
-import {loginUser} from "../Profile/api/user/user";
+import {loginUser} from "../Profile/user";
+
+import {useState, useEffect} from "react";
+import {storageSave} from "../../utils/storage";
+import {useHistory} from 'react-router-dom';
 
 const usernameConfig = {
     required: true,
@@ -12,15 +16,36 @@ const LoginForm = () => {
         handleSubmit,
         formState: {errors},
     } = useForm();
+
+    //Local State
+  const [loading,setLoading] = useState(false)
+  const [apiError,setApiError] = useState(null)
+
+    /*useEffect(()) => {
+      if(user){
+      }
+    }*/
+
+    //Event handler
     const onSubmit = async ({username}) => {
-        //console.log(data);
-        //make a most request to the api: https://bling-bling.herokuapp.com/
+
+        setLoading(true)
+
         const [error, user] = await loginUser(username) //data is username ofc
-        console.log('Error:',error)
-        console.log('User:',user)
+
+        if (error !== null){
+            setApiError(error)
+        }
+        if(user !== null){
+            //you typically store a auth token of some kind
+            storageSave('translator',username)
+        }
+
+        setLoading(false)
 
     };
 
+    //Render Functions
     const errorMessage = () => {
 
         if (!errors.username) {
@@ -47,7 +72,12 @@ const LoginForm = () => {
                     {errorMessage()}
                     {errorMessage()}
                 </fieldset>
-                <button type="submit"> Continue </button>
+
+                <button type="submit" disabled={loading}> Continue </button>
+
+                {loading && <p>Logging in...</p>}
+                {apiError && <p>{apiError}</p>}
+
             </form>
 
         </>
