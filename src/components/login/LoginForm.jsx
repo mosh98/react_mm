@@ -3,7 +3,8 @@ import {loginUser} from "../Profile/user";
 
 import {useState, useEffect} from "react";
 import {storageSave} from "../../utils/storage";
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import {useUser} from "../../context/UserContext";
 
 const usernameConfig = {
     required: true,
@@ -16,29 +17,34 @@ const LoginForm = () => {
         handleSubmit,
         formState: {errors},
     } = useForm();
+    const {user, setUser} = useUser()
+    const navigate = useNavigate()
 
     //Local State
   const [loading,setLoading] = useState(false)
   const [apiError,setApiError] = useState(null)
 
-    /*useEffect(()) => {
-      if(user){
-      }
-    }*/
+
+    //side effect
+    useEffect(() => {
+        if (user !== null) {
+            navigate('/translate')
+        }}, [user])
 
     //Event handler
     const onSubmit = async ({username}) => {
 
         setLoading(true)
 
-        const [error, user] = await loginUser(username) //data is username ofc
+        const [error, userResponse] = await loginUser(username) //data is username ofc
 
         if (error !== null){
             setApiError(error)
         }
-        if(user !== null){
+        if(userResponse !== null){
             //you typically store a auth token of some kind
-            storageSave('translator',username)
+            storageSave('translator',userResponse)
+            setUser(userResponse)
         }
 
         setLoading(false)
