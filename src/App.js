@@ -3,6 +3,7 @@ import './App.css';
 import {BrowserRouter, Routes,Route,useNavigate} from "react-router-dom";
 import Login from "./components/login/login";
 import TextF from "./components/translate/TextF";
+import Profile from "./components/Profile/Profile";
 
 
 function App( ) {
@@ -16,6 +17,7 @@ function App( ) {
       <Routes>
           <Route path="/" element={<Login/>}/>
           <Route path="/TextF" element={<TextF/>}/>
+          <Route path="/Profile" element={<Profile/>}/>
 
 
       </Routes>
