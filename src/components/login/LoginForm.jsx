@@ -28,7 +28,7 @@ const LoginForm = () => {
     //side effect
     useEffect(() => {
         if (user !== null) {
-            navigate('/translate')
+            navigate('/TextF')
         }}, [user])
 
     //Event handler

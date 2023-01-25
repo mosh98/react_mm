@@ -8,13 +8,14 @@ import TextF from "./components/translate/TextF";
 function App( ) {
 //its a comment
     // const navigate = useNavigate();
+    //<Route path="/" element={<Login/>}/>
     return (
 
     <BrowserRouter>
       <div className="App">
       <Routes>
-        <Route path="/" element={<Login/>}/>
-          <Route path="/" element={<TextF/>}/>
+          <Route path="/" element={<Login/>}/>
+          <Route path="/TextF" element={<TextF/>}/>
 
 
       </Routes>
