@@ -2,8 +2,8 @@ import UserProivder from './UserContext'
 const AppContext = ({children}) => {
 
     return(
-        <UserProivder>
 
+        <UserProivder>
             {children}
         </UserProivder>
     )
