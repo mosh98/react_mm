@@ -4,6 +4,7 @@ import {BrowserRouter, Routes,Route,useNavigate} from "react-router-dom";
 import Login from "./components/login/login";
 import TextF from "./components/translate/TextF";
 import Profile from "./components/Profile/Profile";
+import ProfileTranslateHistory from "./components/Profile/ProfileTranslateHistory";
 
 
 function App( ) {
@@ -18,6 +19,7 @@ function App( ) {
           <Route path="/" element={<Login/>}/>
           <Route path="/TextF" element={<TextF/>}/>
           <Route path="/Profile" element={<Profile/>}/>
+          <Route path="/ProfileTranslateHistory" element={<ProfileTranslateHistory/>}/>
 
 
       </Routes>

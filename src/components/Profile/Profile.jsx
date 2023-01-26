@@ -13,6 +13,7 @@ const Profile = () => {
 
             <ProfileTranslateHistory/>
             <button onClick={goBack} type="button" class="btn btn-dark">Go Back</button>
+            <button  type="button" class="btn btn-dark">Clear History</button>
         </>
 
 )
