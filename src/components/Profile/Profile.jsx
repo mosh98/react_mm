@@ -7,13 +7,15 @@ const Profile = () => {
     const goBack = () => {
         navigate(-1);
     }
+
+
     return (
         <>
             <h1>Profile</h1>
 
             <ProfileTranslateHistory/>
             <button onClick={goBack} type="button" class="btn btn-dark">Go Back</button>
-            <button  type="button" class="btn btn-dark">Clear History</button>
+
         </>
 
 )
