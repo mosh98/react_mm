@@ -66,27 +66,27 @@ const LoginForm = () => {
     }
 
     return (
-        <>
-            <h2> Write a Username </h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
 
-                <fieldset>
-                    <label htmlFor="username">Username:</label>
-                    <input type="text"
-                           placeholder="johndoe"
-                           {...register("username", usernameConfig)} />
-                    {errorMessage()}
-                    {errorMessage()}
-                </fieldset>
 
-                <button type="submit" disabled={loading}> Continue </button>
 
-                {loading && <p>Logging in...</p>}
-                {apiError && <p>{apiError}</p>}
+        <div className="card w-50 mx-auto my-auto d-grid place-items-center bg-transparent" style={{margin: "2em", border: "3px solid grey"}}>
+            <div className="card-body bg-transparent" >
 
-            </form>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <fieldset>
+                        <label htmlFor="username">Username:</label>
+                        <input type="text" placeholder="johndoe"
+                               className="form-control bg-transparent input-border" style={{ marginBottom:"1em", border: "3px solid grey"}} {...register("username", usernameConfig)} />
+                        {errorMessage()}
+                        {errorMessage()}
+                    </fieldset>
+                    <button type="submit" disabled={loading} className="btn btn-dark">Continue</button>
+                    {loading && <p>Logging in...</p>}
+                    {apiError && <p>{apiError}</p>}
+                </form>
+            </div>
+        </div>
 
-        </>
     );
 }
 

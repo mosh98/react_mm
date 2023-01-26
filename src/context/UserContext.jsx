@@ -6,6 +6,7 @@ import {createContext, useContext, useState} from "react";
 const UserContext = createContext()
 
 export const useUser = () => {
+
     //this function is a custom hook
     //it returns the value of the context
     return useContext(UserContext)

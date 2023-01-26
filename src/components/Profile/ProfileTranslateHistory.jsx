@@ -11,6 +11,7 @@ const ProfileTranslateHistory = () => {
 
 
     useEffect(() => {
+
         const getHistory = async () => {
             const historyFromServer = await fetchHistory();
 
@@ -22,24 +23,22 @@ const ProfileTranslateHistory = () => {
     },[]);
 
     //make a fetch history function
-
-
     const fetchHistory = async () => {
         try {
 
             const response = await fetch(`${apiURL}?username=${username}`)
+
             if(!response.ok){
                 throw new Error("Could not fetch the data for that resource");
             }
+
             const data = await response.json();
             return data[0].translations.reverse();
 
         }catch (e){
-
             console.log(e);
             return e
         }
-
     }
 
     const clearHistoryFromAPI = async () => {
@@ -57,36 +56,35 @@ const ProfileTranslateHistory = () => {
             }
             const data = await response.json();
             return data;
+
         } catch (e) {
             console.log(e);
             return e
-
         }
     }
 
     //make a clear history onclick function that removes the rendered history from the page
     const clearHistory = () => {
+
         setHistory([]);
         //also clear history from the API
         clearHistoryFromAPI();
-
-
-
     }
-
-
     return(
-        <>
-            <h1>Profile Translate history</h1>
-            <ul className="list-group">
-                { history.map(translate => (
-                    <li  className="list-group-item">
-                         {translate}
-                    </li>
-                ))}
-            </ul>
-            <button type="button" onClick={clearHistory} className="btn btn-dark">Clear History</button>
-        </>
+        <div className="card w-50 mx-auto my-auto d-grid place-items-center bg-transparent .col-6">
+            <div className="card-body w-50 bg-transparent " >
+                <h1>Profile Translate history</h1>
+                <ul className="list-group bg-transparent">
+                    { history.map(translate => (
+                        <li  className="list-group-item bg-transparent">
+                            {translate}
+                        </li>
+                    ))}
+                </ul>
+                <button type="button" onClick={clearHistory} className="btn btn-dark">Clear History</button>
+            </div>
+        </div>
+
     )
 }
 export default ProfileTranslateHistory;

@@ -14,14 +14,12 @@ function App( ) {
     return (
 
     <BrowserRouter>
-      <div className="App">
+      <div className="App stripe-connect-background ">
       <Routes>
           <Route path="/" element={<Login/>}/>
           <Route path="/TextF" element={<TextF/>}/>
           <Route path="/Profile" element={<Profile/>}/>
           <Route path="/ProfileTranslateHistory" element={<ProfileTranslateHistory/>}/>
-
-
       </Routes>
     </div>
     </BrowserRouter>
