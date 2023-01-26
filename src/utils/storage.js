@@ -19,4 +19,11 @@ export const storageRead = key =>{
 
     return null
 }
+export const storageRemove = key => {
+    /**
+     * Removing from storage
+     */
+    localStorage.removeItem(key)
+
+}
 
