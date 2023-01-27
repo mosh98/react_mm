@@ -8,9 +8,7 @@ import ProfileTranslateHistory from "./components/Profile/ProfileTranslateHistor
 
 
 function App( ) {
-//its a comment
-    // const navigate = useNavigate();
-    //<Route path="/" element={<Login/>}/>
+
     return (
 
     <BrowserRouter>

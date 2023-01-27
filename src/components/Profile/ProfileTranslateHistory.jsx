@@ -12,6 +12,7 @@ const ProfileTranslateHistory = () => {
 
     const navigate = useNavigate();
     const goBack = () => {
+        console.log("go back: ",history);
         navigate(-1);
     }
 
@@ -79,7 +80,7 @@ const ProfileTranslateHistory = () => {
     return(
         <div className="card w-50 mx-auto my-auto d-grid place-items-center bg-transparent .col-6">
             <div className="card-body w-50 bg-transparent mx-auto my-auto d-grid place-items-center col-7 " >
-                <h5>{JSON.parse(localStorage.getItem('translator')).username} Translate history</h5>
+                <h5>{JSON.parse(localStorage.getItem('translator')).username}'s Translate history</h5>
                 <ul className="list-group bg-transparent stripe-connect-border">
                     { history.map(translate => (
                         <li  className="list-group-item bg-transparent" style={{border:"7em"}}>
