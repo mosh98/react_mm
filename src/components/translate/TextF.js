@@ -12,9 +12,18 @@ function TextField() {
 
     const [value, setValue] = useState('');
     const [inputValue, setInputValue] = useState(''); //i dont use this anymore
-    const [inputList, setInputList] = useState([]); //translation list
+    const [inputList, setInputList] = useState(fetchOldList); //translation list
     const {user,setUser} = useUser()
 
+
+    function fetchOldList(){
+        //get old list
+        let oldList = JSON.parse(localStorage.getItem('translator')).translations
+        console.log("oldList",oldList)
+        return oldList
+    }
+
+    //fetch user translations from API
     //let old_input = []
     const navigate = useNavigate()
 
@@ -35,32 +44,7 @@ function TextField() {
 
     }
 
-    /*async function updateUserTranslations(val) {
 
-        if (!val) {
-            throw new Error("val is empty or not valid")
-        }
-        let userId = JSON.parse(localStorage.getItem('translator')).id
-
-        try {
-            const response = await fetch(`${apiURL}/${userId}`, {
-                method: 'PATCH',
-                headers: createHeaders(),
-                body: JSON.stringify({
-                    translations: [...inputList, val]
-                })
-            });
-            if (!response.ok) {
-                throw new Error(`Could not update translations history, status: ${response.status}`);
-            }
-            const updatedUser = await response.json();
-            setInputList([...inputList, val]);
-            return updatedUser.translations;
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
-    }*/
     async function updateUserTranslations(val) {
 
         if (!val) {
@@ -81,13 +65,17 @@ function TextField() {
             }
             const updatedUser = await response.json();
             setInputList([...inputList, val]);
-
+            //upadate local storage translations
+            let oldUser = JSON.parse(localStorage.getItem('translator'))
+            oldUser.translations = [...inputList, val]
+            localStorage.setItem('translator', JSON.stringify(oldUser))
             return updatedUser.translations;
 
         } catch (error) {
             console.error(error);
             throw error;
         }
+
     }
 
 
@@ -101,7 +89,7 @@ function TextField() {
     }
     return (
         <div className="bg-transparent mx-auto my-auto d-grid place-items-center col-7">
-
+            {console.log("Redering translate page:",inputList)}
             <>
                 <div class="container bg" style={{margin:"1em"}}>
                     <button type="button" class="btn btn-dark" onClick={handleClickLogout}>Log out</button>
