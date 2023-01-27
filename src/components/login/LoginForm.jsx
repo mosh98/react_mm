@@ -1,5 +1,5 @@
 import {useForm} from "react-hook-form";
-import {loginUser} from "../Profile/user";
+import {loginUser} from "./user";
 
 import {useState, useEffect} from "react";
 import {storageSave} from "../../utils/storage";
@@ -74,9 +74,9 @@ const LoginForm = () => {
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <fieldset>
-                        <label htmlFor="username">Enter Username:</label>
-                        <input type="text" placeholder="johndoe"
-                               className="form-control bg-transparent input-border stripe-connect-border" style={{ marginBottom:"1em", border: ".5px solid grey"}} {...register("username", usernameConfig)} />
+                        <label htmlFor="username" className="subtitle-header">Enter Username:</label>
+                        <input type="text" placeholder="example: @johndoe"
+                               className="form-control bg-transparent input-border stripe-connect-border " style={{ marginBottom:"1em", border: ".5px solid grey"}} {...register("username", usernameConfig)} />
                         {errorMessage()}
                         {errorMessage()}
                     </fieldset>
