@@ -11,7 +11,7 @@ const Profile = () => {
 
     return (
         <>
-            <h1>Profile</h1>
+            <h4>Profile</h4>
 
             <ProfileTranslateHistory/>
             <button onClick={goBack} type="button" class="btn btn-dark">Go Back</button>

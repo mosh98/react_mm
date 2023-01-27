@@ -35,6 +35,32 @@ function TextField() {
 
     }
 
+    /*async function updateUserTranslations(val) {
+
+        if (!val) {
+            throw new Error("val is empty or not valid")
+        }
+        let userId = JSON.parse(localStorage.getItem('translator')).id
+
+        try {
+            const response = await fetch(`${apiURL}/${userId}`, {
+                method: 'PATCH',
+                headers: createHeaders(),
+                body: JSON.stringify({
+                    translations: [...inputList, val]
+                })
+            });
+            if (!response.ok) {
+                throw new Error(`Could not update translations history, status: ${response.status}`);
+            }
+            const updatedUser = await response.json();
+            setInputList([...inputList, val]);
+            return updatedUser.translations;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }*/
     async function updateUserTranslations(val) {
 
         if (!val) {
@@ -56,6 +82,7 @@ function TextField() {
             const updatedUser = await response.json();
             setInputList([...inputList, val]);
             return updatedUser.translations;
+
         } catch (error) {
             console.error(error);
             throw error;
@@ -84,14 +111,14 @@ function TextField() {
             </>
 
             <>
-                <div class="container bg-transparent" style={{margin:"1em", width:600}}>
+                <div class="container bg-transparent " style={{margin:"1em", width:600}}>
 
                 <input
                     type="text"
-                    value={value} class="form-control " placeholder={"Enter a phrase to translate"}
+                    value={value} class="form-control stripe-connect-border" placeholder={"Enter a phrase to translate"}
                     onChange={(e) => setValue(e.target.value) } />
 
-                    <div className={"card bg-transparent bg-opacity-10"} >
+                    <div className={"card bg-transparent "} >
 
 
                         {inputValue ? <Showcase string={inputValue}/> : null}

@@ -69,14 +69,14 @@ const LoginForm = () => {
 
 
 
-        <div className="card w-50 mx-auto my-auto d-grid place-items-center bg-transparent" style={{margin: "2em", border: "3px solid grey"}}>
+        <div className="card w-50 mx-auto my-auto d-grid place-items-center bg-transparent stripe-connect-border" style={{margin: "2em"}}>
             <div className="card-body bg-transparent" >
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <fieldset>
                         <label htmlFor="username">Username:</label>
                         <input type="text" placeholder="johndoe"
-                               className="form-control bg-transparent input-border" style={{ marginBottom:"1em", border: "3px solid grey"}} {...register("username", usernameConfig)} />
+                               className="form-control bg-transparent input-border stripe-connect-border" style={{ marginBottom:"1em", border: ".5px solid grey"}} {...register("username", usernameConfig)} />
                         {errorMessage()}
                         {errorMessage()}
                     </fieldset>

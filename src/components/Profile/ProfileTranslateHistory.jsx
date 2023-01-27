@@ -7,7 +7,7 @@ const ProfileTranslateHistory = () => {
     //get the user's translate history from the database
     const [history,setHistory] = useState([]);
     const username = JSON.parse(localStorage.getItem('translator')).username;
-    //a state from deleting history
+
 
 
     useEffect(() => {
@@ -17,6 +17,7 @@ const ProfileTranslateHistory = () => {
 
             //setHistory(historyFromServer.slice(0,10));
             //historyFromServer is already reversed from the fetchHistory function
+            //setHistory(historyFromServer.slice(0,10));
             setHistory(historyFromServer.slice(0,10));
         }
         getHistory();

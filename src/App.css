@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 300vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +46,20 @@
   background-image: linear-gradient(to left, #3023ae, #c86dd7, #f5c6cb);
 }
 
+.bg-opacity-card {
+  background-color: #000000; /* or any other color */
+  opacity: 0.7;
+}
+.bg-opacity-cardx2 {
+  background-color: #000000; /* or any other color */
+  opacity: 0.9;
 
+}
+.stripe-connect-border {
+  border: 3px solid #9755c8;
+  border-radius:10px;
+  box-shadow: 0 0 10px #7745bf;
+}
 
 .input-border {
   border: 2px solid #0000FF;
