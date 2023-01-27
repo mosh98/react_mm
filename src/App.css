@@ -60,8 +60,27 @@
   border-radius:10px;
   box-shadow: 0 0 10px #7745bf;
 }
+.button-hover:hover {
+  /*background: radial-gradient(circle, #3023ae, #c884d5, #f5c6cb);*/
+  /*background: rgba(0, 0, 0, 0);*/
+  background-color: #000000; /* or any other color */
+  opacity: .6;
 
-.input-border {
-  border: 2px solid #0000FF;
-  border-radius: 5px;
 }
+.title-header {
+  color: white;
+  text-shadow: 1px 1px 2px #333;
+}
+
+.subtitle-header {
+  color: white;
+  text-shadow: 1px 1px 2px #333;
+}
+.left-image {
+  float: left;
+  width: 20%; /* adjust as needed */
+  height: auto;
+  margin-right: -1000px;
+}
+
+
