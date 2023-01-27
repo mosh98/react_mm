@@ -81,6 +81,7 @@ function TextField() {
             }
             const updatedUser = await response.json();
             setInputList([...inputList, val]);
+
             return updatedUser.translations;
 
         } catch (error) {
@@ -99,7 +100,7 @@ function TextField() {
 
     }
     return (
-        <div className="bg-transparent">
+        <div className="bg-transparent mx-auto my-auto d-grid place-items-center col-7">
 
             <>
                 <div class="container bg" style={{margin:"1em"}}>
@@ -111,7 +112,7 @@ function TextField() {
             </>
 
             <>
-                <div class="container bg-transparent " style={{margin:"1em", width:600}}>
+                <div class="container bg-transparent mx-auto my-auto d-grid place-items-center col-7 " style={{margin:"1em", width:600}}>
 
                 <input
                     type="text"
