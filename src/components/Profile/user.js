@@ -23,6 +23,7 @@ const checkForUser = async (username) => {
         }
 
         const data = await response.json()
+
         return [null, data] //return the response
 
     } catch (error){

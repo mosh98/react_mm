@@ -9,19 +9,14 @@ import {useUser} from "../../context/UserContext";
 const apiURL = process.env.REACT_APP_API_URL
 
 function TextField() {
-
+    const {user,setUser} = useUser()
     const [value, setValue] = useState('');
     const [inputValue, setInputValue] = useState(''); //i dont use this anymore
-    const [inputList, setInputList] = useState(fetchOldList); //translation list
-    const {user,setUser} = useUser()
+    const [inputList, setInputList] = useState(user.translations); //translation list
 
 
-    function fetchOldList(){
-        //get old list
-        let oldList = JSON.parse(localStorage.getItem('translator')).translations
-        console.log("oldList",oldList)
-        return oldList
-    }
+
+
 
     //fetch user translations from API
     //let old_input = []
@@ -63,12 +58,20 @@ function TextField() {
             if (!response.ok) {
                 throw new Error(`Could not update translations history, status: ${response.status}`);
             }
+
             const updatedUser = await response.json();
             setInputList([...inputList, val]);
+
+
             //upadate local storage translations
             let oldUser = JSON.parse(localStorage.getItem('translator'))
             oldUser.translations = [...inputList, val]
             localStorage.setItem('translator', JSON.stringify(oldUser))
+
+            //update user context
+            setUser(updatedUser)
+
+
             return updatedUser.translations;
 
         } catch (error) {
