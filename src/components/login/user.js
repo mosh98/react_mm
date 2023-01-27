@@ -1,4 +1,4 @@
-import {createHeaders} from "./index";
+import {createHeaders} from "../Profile";
 
 
 /***
