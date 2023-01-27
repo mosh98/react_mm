@@ -9,6 +9,8 @@ import {useUser} from "../../context/UserContext";
 const apiURL = process.env.REACT_APP_API_URL
 
 function TextField() {
+    //defining different states and users
+    //
     const {user,setUser} = useUser()
     const [value, setValue] = useState('');
     const [inputValue, setInputValue] = useState(''); //i dont use this anymore
@@ -35,12 +37,14 @@ function TextField() {
     function handleClickProfile(){
         //navigate to profile
         navigate('/Profile')
-        //setUser(null)
 
     }
 
 
     async function updateUserTranslations(val) {
+        //check if val is empty
+        //if not, then update user translation list.
+
 
         if (!val) {
             throw new Error("val is empty or not valid")
@@ -80,11 +84,27 @@ function TextField() {
         }
 
     }
+    function cleanString(str){
+        //make a function that takes in a string and returns a string
+        //but it removes every character that is not a english letter
+        let newStr = "";
+        for(let i = 0; i<str.length; i++){
+            //checking if the character is a letter
+            if(str[i].match(/[a-zA-Z]/)){
+                newStr += str[i];
+            }
+        }
+        return newStr;
+    }
+
 
 
 
     function handleClick() {
-        setInputValue(value);
+        //when the button is clicked, update the translation list
+        //and update the user translation list (i.e api call)
+
+        setInputValue(cleanString(value));
 
 
         updateUserTranslations(value)

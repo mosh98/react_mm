@@ -1,17 +1,25 @@
 import {useState,useEffect} from 'react';
 import {createHeaders} from "./index";
 import {useNavigate} from "react-router-dom";
+import {storageRemove} from "../../utils/storage";
 const apiURL = process.env.REACT_APP_API_URL
+
+/**
+ * Shows the profile history and other button actions
+ *
+ * */
 
 const ProfileTranslateHistory = () => {
 
     //get the user's translate history from the database
     const [history,setHistory] = useState([]);
     const username = JSON.parse(localStorage.getItem('translator')).username;
+    const userIdX2 = JSON.parse(localStorage.getItem('translator')).id
 
 
     const navigate = useNavigate();
     const goBack = () => {
+        // go back to the login page
         console.log("go back: ",history);
         navigate(-1);
     }
@@ -19,26 +27,24 @@ const ProfileTranslateHistory = () => {
     useEffect(() => {
 
         const getHistory = async () => {
+            //only show the last 10 translations
             const historyFromServer = await fetchHistory();
 
-            //setHistory(historyFromServer.slice(0,10));
-            //historyFromServer is already reversed from the fetchHistory function
             setHistory(historyFromServer.slice(0,10));
             //setHistory(historyFromServer);
         }
         getHistory();
     },[]);
 
+
     //make a fetch history function
     const fetchHistory = async () => {
+        //get the translation list from api/database
         try {
-
             const response = await fetch(`${apiURL}?username=${username}`)
-
             if(!response.ok){
                 throw new Error("Could not fetch the data for that resource");
             }
-
             const data = await response.json();
             return data[0].translations.reverse();
 
@@ -49,6 +55,7 @@ const ProfileTranslateHistory = () => {
     }
 
     const clearHistoryFromAPI = async () => {
+        //clear the history from the API basically remove
         let userId = JSON.parse(localStorage.getItem('translator')).id
 
         //make a patch request to the API on translations with EMPTY list
@@ -72,8 +79,13 @@ const ProfileTranslateHistory = () => {
 
     //make a clear history onclick function that removes the rendered history from the page
     const clearHistory = () => {
-
+        //clear the history from the page
         setHistory([]);
+
+        //clear the history from the local storage
+        //storageRemove('translator'); //clear the translator from the local storage
+        localStorage.setItem('translator',JSON.stringify({id:userIdX2,username:username,translations:[]}));
+
         //also clear history from the API
         clearHistoryFromAPI();
     }

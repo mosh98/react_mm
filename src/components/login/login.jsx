@@ -1,8 +1,10 @@
 import LoginForm  from "./LoginForm";
 
 const Login = () => {
+    // this function is called when the app is loaded
+    // it checks if the user is already logged in
+    // if so, it redirects to the translation page
 
-//<div className="stripe-connect-background">
     return (
         <div className="bg">
             <img src="/LostInTranslation_Resources/Splash.svg" className="left-image" alt="image" />

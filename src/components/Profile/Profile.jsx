@@ -1,8 +1,8 @@
 
 import ProfileTranslateHistory from "./ProfileTranslateHistory";
 import {useNavigate} from "react-router-dom";
-//import withAuth from "../withAuth"; FIX THIS
 const Profile = () => {
+// profile page
 
 
 

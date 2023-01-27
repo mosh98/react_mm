@@ -11,21 +11,26 @@ const usernameConfig = {
     minLength: 2,
 }
 const LoginForm = () => {
+    //This login form is a controlled component
+
 
     const {
         register,
         handleSubmit,
         formState: {errors},
     } = useForm();
+
+    // Context for user
     const {user, setUser} = useUser()
+    //Navigation
     const navigate = useNavigate()
 
     //Local State
-  const [loading,setLoading] = useState(false)
-  const [apiError,setApiError] = useState(null)
+  const [loading,setLoading] = useState(false) //this is for the loading state
+  const [apiError,setApiError] = useState(null) //this is for the api error
 
 
-    //side effect
+    //side effect: if user is not null, navigate to the translation page
     useEffect(() => {
         if (user !== null) {
             navigate('/TextF')
@@ -33,14 +38,18 @@ const LoginForm = () => {
 
     //Event handler
     const onSubmit = async ({username}) => {
-
+        //this is the event handler for the form submission
+        //it will be called when the username is submitted
+        //checks if the user exists otherwise it will create a new user
         setLoading(true)
 
-        const [error, userResponse] = await loginUser(username) //data is username ofc
+        const [error, userResponse] = await loginUser(username) //checking user stuff
 
+        //if there is an error, set the error state
         if (error !== null){
             setApiError(error)
         }
+        //if there is a user, set the user state
         if(userResponse !== null){
             //you typically store a auth token of some kind
             storageSave('translator',userResponse)
@@ -53,6 +62,8 @@ const LoginForm = () => {
 
     //Render Functions
     const errorMessage = () => {
+        //standard error messages
+
 
         if (!errors.username) {
             return null
@@ -66,9 +77,6 @@ const LoginForm = () => {
     }
 
     return (
-
-
-
         <div className="card w-50 mx-auto my-auto d-grid place-items-center bg-transparent stripe-connect-border" style={{margin: "2em"}}>
             <div className="card-body bg-transparent" >
 

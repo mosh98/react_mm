@@ -3,6 +3,7 @@ import {createHeaders} from "../Profile";
 const apiURL = process.env.REACT_APP_API_URL
 const apiKey = process.env.REACT_APP_API_KEY
 class Showcase extends Component {
+    //basically showcasing sprites with each letter in a word.
 
     constructor(props) {
 

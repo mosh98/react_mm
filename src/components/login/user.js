@@ -1,14 +1,15 @@
 import {createHeaders} from "../Profile";
 
 
-/***
- * TODO:
- *      1.Check if the user exist []
- *      2. if not, Save username to the Translation API [DONE]
- *      3. else, display user
- *      4. Users that are already logged in may automatically redirected to the translation page. (cookies or some shit?)
- *      5.
- *      */
+/**
+ * What is this class doing?
+ * 1. Check if user exists in the database
+ * 2. If user exists, return the user
+ * 3. If user does not exist, create a new user
+ * 4. Return the new user
+ * @param username
+ * @returns {Promise<*>}
+ * */
 const apiURL = process.env.REACT_APP_API_URL
 
 const checkForUser = async (username) => {
@@ -33,6 +34,7 @@ const checkForUser = async (username) => {
 }
 
 const createUser = async (username) => {
+    //create a new user
 
     //creating new ID
     const translations = []
@@ -60,6 +62,8 @@ const createUser = async (username) => {
 }
 
 export const loginUser = async (username) => {
+    //check if user exists
+    //if user exists, return the user
 
 
     const [checkError, user] = await checkForUser(username)
@@ -74,8 +78,6 @@ export const loginUser = async (username) => {
 
 
 
-    /*const [createError, newUser] = await createUser(username)
-    if(createError !== null){ return [null, newUser] // returning the new user }*/
 
     return await createUser(username) // lasier way to write the commented out code.
 }
