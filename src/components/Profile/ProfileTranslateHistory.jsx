@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react';
 import {createHeaders} from "./index";
 import {useNavigate} from "react-router-dom";
 import {storageRemove} from "../../utils/storage";
+import {useUser} from "../../context/UserContext";
 const apiURL = process.env.REACT_APP_API_URL
 
 /**
@@ -12,6 +13,7 @@ const apiURL = process.env.REACT_APP_API_URL
 const ProfileTranslateHistory = () => {
 
     //get the user's translate history from the database
+    const {user,setUser} = useUser()
     const [history,setHistory] = useState([]);
     const username = JSON.parse(localStorage.getItem('translator')).username;
     const userIdX2 = JSON.parse(localStorage.getItem('translator')).id
@@ -46,6 +48,8 @@ const ProfileTranslateHistory = () => {
                 throw new Error("Could not fetch the data for that resource");
             }
             const data = await response.json();
+            setUser(data[0])
+
             return data[0].translations.reverse();
 
         }catch (e){
@@ -69,6 +73,7 @@ const ProfileTranslateHistory = () => {
                 throw new Error("Could not fetch the data for that resource");
             }
             const data = await response.json();
+            setUser(data)
             return data;
 
         } catch (e) {
